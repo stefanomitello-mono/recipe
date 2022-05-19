@@ -213,44 +213,31 @@
       <div class="flex flex-col md:flex-row w-full">
 
         <aside class="w-full md:w-[25%] md:container flex md:flex-col">
-          <ul
-            class="my-2 overflow-x-auto text-center md:text-left md:overflow-y-auto flex flex-row md:justify-center md:flex-col">
+          <ul id="results"
+            class="my-2 overflow-x-auto text-center md:text-left md:overflow-y-auto flex flex-row md:justify-center md:flex-col ">
 
-            <li>
-              <a href="#" class="flex flex-col items-center justify-center md:flex-row hover:bg-gray-100">
-                <img class="object-cover h-12 w-12 rounded-full"
-                  src="https://forkify-api.herokuapp.com/images/BBQChickenPizzawithCauliflowerCrust5004699695624ce.jpg"
-                  alt="">
-                <div class="flex flex-col justify-between p-4 leading-normal text-center md:text-left">
-                  <p
-                    class="text-basefont-semibold	truncatetracking-tight text-transparent bg-clip-text bg-gradient-to-br	from-[#fbdb89] to-[#f48982] uppercase">
-                    Name
-                  </p>
-                  <p class="text-xs	font-semibold text-[#918581] uppercase">
-                    Company
-                  </p>
-                </div>
-              </a>
-            </li>
+            <template id="resultItem">
+              <li>
+                <a href="#" data-id=""
+                  class="flex flex-col px-4 items-center md:justify-start md:flex-row hover:bg-gray-100">
+                  <img class="result__item--figure object-cover h-12 w-12 rounded-full"
+                    src="https://forkify-api.herokuapp.com/images/BBQChickenPizzawithCauliflowerCrust5004699695624ce.jpg"
+                    alt="">
+                  <div class="flex flex-col justify-between p-4 leading-normal text-center md:text-left">
+                    <p
+                      class="result__item--name text-basefont-semibold	truncate tracking-tight text-transparent bg-clip-text bg-gradient-to-br	from-[#fbdb89] to-[#f48982] uppercase">
+                      Name
+                    </p>
+                    <p class="result__item--company text-xs	font-semibold text-[#918581] uppercase">
+                      Company
+                    </p>
+                  </div>
+                </a>
+              </li>
+            </template>
 
-            <li>
-              <a href="#" class="flex flex-col items-center justify-center md:flex-row hover:bg-gray-100">
-                <img class="object-cover h-12 w-12 rounded-full"
-                  src="https://forkify-api.herokuapp.com/images/BBQChickenPizzawithCauliflowerCrust5004699695624ce.jpg"
-                  alt="">
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                  <p
-                    class="text-basefont-semibold	truncatetracking-tight text-transparent bg-clip-text bg-gradient-to-br	from-[#fbdb89] to-[#f48982] uppercase">
-                    Name
-                  </p>
-                  <p class="text-xs	font-semibold text-[#918581] uppercase">
-                    Company
-                  </p>
-                </div>
-              </a>
-            </li>
 
-            <li>
+            <!--  <li>
               <a href="#" class="flex flex-col items-center justify-center md:flex-row hover:bg-gray-100">
                 <img class="object-cover h-12 w-12 rounded-full"
                   src="https://forkify-api.herokuapp.com/images/BBQChickenPizzawithCauliflowerCrust5004699695624ce.jpg"
@@ -368,6 +355,23 @@
                 </div>
               </a>
             </li>
+
+            <li>
+              <a href="#" class="flex flex-col items-center justify-center md:flex-row hover:bg-gray-100">
+                <img class="object-cover h-12 w-12 rounded-full"
+                  src="https://forkify-api.herokuapp.com/images/BBQChickenPizzawithCauliflowerCrust5004699695624ce.jpg"
+                  alt="">
+                <div class="flex flex-col justify-between p-4 leading-normal">
+                  <p
+                    class="text-basefont-semibold	truncatetracking-tight text-transparent bg-clip-text bg-gradient-to-br	from-[#fbdb89] to-[#f48982] uppercase">
+                    Name
+                  </p>
+                  <p class="text-xs	font-semibold text-[#918581] uppercase">
+                    Company
+                  </p>
+                </div>
+              </a>
+            </li> -->
 
           </ul>
 
