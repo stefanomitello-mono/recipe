@@ -1,5 +1,5 @@
 import './src/index.scss'
-import { searchRecipes, getRecipe, truncate, dectofraction } from './src/utils'
+import { searchRecipes, getRecipe, truncate, dectofraction, toLocalStorage } from './src/utils'
 
 
 function renderSidebar(title, image_url, publisher, id) {
@@ -34,7 +34,7 @@ function renderContent(id, title, image_url, publisher, ingredients, source_url,
     let clone = document.importNode(content, true);
 
     clone.querySelector(".recipe__name").textContent = title;
-    //clone.querySelector("li a").setAttribute('data-id', id);
+    clone.querySelector(".recipe__id").setAttribute('data-id', id);
     clone.querySelector(".recipe__figure ").src = image_url;
     clone.querySelector(".recipe__publisher ").textContent = publisher;
     clone.querySelector(".recipe__btn ").href = source_url;
@@ -54,6 +54,7 @@ function renderContent(id, title, image_url, publisher, ingredients, source_url,
     clone.querySelector('.recipe__info-data-people--btn-minus').addEventListener("click", minus);
     clone.querySelector('.recipe__info-data-people--btn-plus').addEventListener("click", plus);
 
+    clone.querySelector('.recipe__id').addEventListener("click", setBookmark);
 
     //get all ingredients list
     /* const matches = clone.querySelectorAll(".recipe__quantity");
@@ -114,7 +115,6 @@ async function getContent(event) {
     //resultside.innerHTML = text
 }
 
-
 function minus() {
     //clone.querySelector(".recipe__info-data-people--value").innerHTML(clone.querySelector(".recipe__info-data-people--value").value - 1)
     //document.querySelector(".recipe__info-data-people--btn-minus").getAttribute('data-minus')
@@ -124,11 +124,6 @@ function minus() {
 
     const quantity = document.querySelectorAll(".recipe__quantity");
 
-    console.log(
-        "4 persone: ", quantity[0].innerHTML,
-        "per 3 persone: ", Number(quantity[0].innerHTML) - Number(quantity[0].getAttribute('data-qtybase')),
-        "formula: ", Number(quantity[0].innerHTML) + " - " + Number(quantity[0].getAttribute('data-qtybase')) + "|",
-    )
 
     let indice = 0
     quantity.forEach(qty => {
@@ -148,12 +143,6 @@ function plus() {
 
     const quantity = document.querySelectorAll(".recipe__quantity");
 
-    console.log(
-        "4 persone: ", quantity[0].innerHTML,
-        "per 5 persone: ", Number(quantity[0].innerHTML) + Number(quantity[0].getAttribute('data-qtybase')),
-        "formula: ", Number(quantity[0].innerHTML) + " + " + Number(quantity[0].getAttribute('data-qtybase')) + "|",
-    )
-
     let indice = 0
     quantity.forEach(qty => {
         let q2 = Number(qty.innerHTML) + Number(qty.getAttribute('data-qtybase'))
@@ -166,5 +155,20 @@ function updateIngredients(quantity = '', index) {
     console.log("qty aggiornato:", quantity)
     document.querySelector(`.recipe__quantity[data-index="${index}"] `).innerHTML = quantity ? quantity : '' //dectofraction(quantity)
     //clone.querySelector('.recipe__quantity ').getAttribute('data-index');
+
+}
+
+async function setBookmark(e) {
+    e.preventDefault();
+
+    let id = e.currentTarget.getAttribute('data-id')
+
+    let res = await getRecipe(id);
+
+    const obj = { id: res.data.recipe.id, title: res.data.recipe.title, image_url: res.data.recipe.image_url, publisher: res.data.recipe.publisher };
+
+    toLocalStorage('data', obj)
+
+
 
 }

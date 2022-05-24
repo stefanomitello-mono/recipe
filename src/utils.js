@@ -45,3 +45,13 @@ export const dectofraction = (decimal) => {
 
     return Math.floor(numerator) + '/' + Math.floor(denominator);
 }
+
+export const toLocalStorage = (key = 'data', object) => {
+    let oldItems = fromLocalStorage(key) || [];
+    oldItems.push(object);
+    localStorage.setItem(key, JSON.stringify(oldItems));
+}
+
+export const fromLocalStorage = (key = 'data') => {
+    return JSON.parse(localStorage.getItem(key));
+}
