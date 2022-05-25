@@ -232,12 +232,21 @@
             </ul>
 
             <div class="mt-auto px-6 hidden md:block">
+
               <button
-                class="recipe__btn-next flex float-right cursor-pointer items-center text-[#f38e82] rounded-full bg-[#f9f5f3] px-3 py-2 uppercase text-xs font-bold">
-                <span data-next="0" data-query="tomato">Next</span>
+                class="recipe__btn next flex float-right cursor-pointer items-center text-[#f38e82] rounded-full bg-[#f9f5f3] px-3 py-2 uppercase text-xs font-bold">
+                <span id="recipe__btn-next" data-page="" data-query="">Next</span>
                 <svg class="search__icon fill-[#f38e82] h-4 w-4 ml-1">
                   <use href="/src/assets/icons.svg#icon-arrow-right"></use>
                 </svg>
+              </button>
+
+              <button
+                class="recipe__btn prev hidden flex float-right cursor-pointer items-center text-[#f38e82] rounded-full bg-[#f9f5f3] px-3 py-2 uppercase text-xs font-bold">
+                <svg class="search__icon fill-[#f38e82] h-4 w-4 ml-1">
+                  <use href="/src/assets/icons.svg#icon-arrow-left"></use>
+                </svg>
+                <span id="recipe__btn-prev">Prev</span>
               </button>
             </div>
 
