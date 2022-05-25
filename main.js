@@ -205,6 +205,7 @@ function bookmarkSidebar() {
 
             const bookmarkItem = document.querySelector("#bookmarkItem");
 
+            bookmarkItem.innerHTML = ''
             bookmarks.forEach(bookmark => {
                 bookmarkItem.appendChild(renderSidebar(bookmark.title, bookmark.image_url, bookmark.publisher, bookmark.id));
                 document.querySelector(`#bookmarkItem li[data-id='${bookmark.id}']`).addEventListener("click", getContent);
