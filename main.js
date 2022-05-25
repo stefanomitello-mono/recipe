@@ -63,17 +63,51 @@ function renderContent(id, title, image_url, publisher, ingredients, source_url,
     return clone;
 }
 
+function setSearchVisible() {
+
+    const mediaQuery = window.matchMedia('(max-width: 768px)')
+    // Check if the media query is true
+    if (mediaQuery.matches) {
+        //&& (event.target == "searchBtnm") recipe__btn-next
+        // console.log(event.target)
+
+        /* if (event.target.id == "searchBtnm") {
+
+        } */
+
+        search.classList.remove('hidden')
+        search.style.cssText += "position: absolute; top: 10%; left: 50%; transform: translateX(-50%);  z-index: 99; "
+
+
+        searchBtnm.addEventListener("click", function () { //search.classList.add('hidden')
+            document.querySelector('#search').classList.contains('hidden') ? document.querySelector('#search').classList.remove("hidden") : document.querySelector('#search').classList.add("hidden");
+
+        });
+
+
+        getSearchValue
+    }
+}
+
 async function getSearchValue(event) {
     event.preventDefault();
-
-    console.log(event.target)
+    console.info("----------------------")
 
     let s;
     let page = 1;
+
     switch (event.target.id) {
         case "recipe__btn-next":
             s = document.querySelector('#recipe__btn-next').getAttribute('data-query');
             page = Number(document.querySelector('#recipe__btn-next').getAttribute('data-page'));
+
+            console.log("page next from target:", page)
+            break
+        case "recipe__btn-prev":
+            s = document.querySelector('#recipe__btn-prev').getAttribute('data-query');
+            page = Number(document.querySelector('#recipe__btn-prev').getAttribute('data-page'));
+
+            console.log("page prev from target:", page)
             break
         default:
             s = document.getElementById('search-value').value
@@ -84,12 +118,9 @@ async function getSearchValue(event) {
     console.info("search", s)
 
     let res = await searchRecipes(s);
-
-    console.log("raw json: ", res)
     console.log("json paginated: ", paginator(res.data.recipes, page))
 
     res = paginator(res.data.recipes, page)
-    console.log(res.data)
 
     if (!document.getElementById("nothing").classList.contains('hidden')) { document.getElementById("nothing").classList.add("hidden"); }
 
@@ -113,23 +144,25 @@ async function getSearchValue(event) {
             console.log("prev page data:", document.querySelector('#recipe__btn-prev').getAttribute('data-page'))
             console.log("prev page from api:", res.pre_page)
 
+            console.log("next page data:", document.querySelector('#recipe__btn-next').getAttribute('data-page'))
+            console.log("next page from api:", res.next_page)
 
-            if (document.querySelector('#recipe__btn-prev').getAttribute('data-page')) {
-                document.querySelector('#recipe__btn-prev').setAttribute('data-page', res.pre_page)
-                document.querySelector('#recipe__btn-prev').setAttribute('data-query', s)
+            //pagination
+
+            if (res.pre_page) {
                 document.querySelector('.recipe__btn.prev').classList.remove("hidden")
             }
-            console.log("prev:", document.querySelector('#recipe__btn-prev').getAttribute('data-page'))
+
+            if (!res.next_page) {
+                document.querySelector('.recipe__btn.next').classList.add("hidden")
+            }
 
 
+            document.querySelector('#recipe__btn-prev').setAttribute('data-query', s)
+            document.querySelector('#recipe__btn-prev').setAttribute('data-page', res.pre_page)
             document.querySelector('#recipe__btn-next').setAttribute('data-page', res.next_page)
             document.querySelector('#recipe__btn-next').setAttribute('data-query', s)
 
-
-            /* if (!document.querySelector('#recipe__btn-next').getAttribute('data-page')) {
-                document.querySelector('#recipe__btn-next').setAttribute('data-page', res.next_page)
-                document.querySelector('.recipe__btn.next').classList.add("hidden")
-            } */
             //document.querySelector("#results li").addEventListener("click", getContent);
             return;
         } else {
@@ -145,6 +178,7 @@ async function getSearchValue(event) {
 search.addEventListener("submit", getSearchValue);
 //document.querySelector('.recipe__btn-next').addEventListener("click", function (event) { getSearchValue(event, document.getElementById('search-value').value) });
 document.querySelector('.recipe__btn').addEventListener("click", getSearchValue);
+searchBtnm.addEventListener("click", setSearchVisible);
 
 async function getContent(event) {
     event.preventDefault()

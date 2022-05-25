@@ -59,7 +59,7 @@ export const fromLocalStorage = (key = 'data') => {
 export function paginator(items, page, per_page) {
 
     var page = page || 1,
-        per_page = per_page || 10,
+        per_page = per_page || 14,
         offset = (page - 1) * per_page,
 
         paginatedItems = items.slice(offset).slice(0, per_page),

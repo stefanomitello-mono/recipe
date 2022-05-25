@@ -47,7 +47,7 @@
 
           <div class="flex justify-center	 md:grow md:order-1">
 
-            <button type="button"
+            <button type="button" id="searchBtnm"
               class="md:hidden text-gray-500  hover:bg-gray-100  focus:outline-none focus:ring-4 focus:ring-gray-200  rounded-lg text-sm p-2.5 mr-1">
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -206,7 +206,7 @@
 
         <div id="res" class="hidden flex flex-col md:flex-row w-full">
 
-          <aside class="w-full md:w-[25%] md:container flex md:flex-col">
+          <aside class="w-full md:w-[25%] md:container flex flex-col">
             <ul id="results"
               class="my-2 overflow-x-auto text-center md:text-left md:overflow-y-auto flex flex-row md:justify-center md:flex-col ">
 
@@ -231,10 +231,10 @@
           -->
             </ul>
 
-            <div class="mt-auto px-6 hidden md:block">
+            <div class="mt-auto mb-1 px-2 justify-between flex flex-row-reverse">
 
               <button
-                class="recipe__btn next flex float-right cursor-pointer items-center text-[#f38e82] rounded-full bg-[#f9f5f3] px-3 py-2 uppercase text-xs font-bold">
+                class="recipe__btn next flex mx-1 md:float-right cursor-pointer items-center text-[#f38e82] rounded-full bg-[#f9f5f3] px-3 py-2 uppercase text-xs font-bold">
                 <span id="recipe__btn-next" data-page="" data-query="">Next</span>
                 <svg class="search__icon fill-[#f38e82] h-4 w-4 ml-1">
                   <use href="/src/assets/icons.svg#icon-arrow-right"></use>
@@ -242,11 +242,11 @@
               </button>
 
               <button
-                class="recipe__btn prev hidden flex float-right cursor-pointer items-center text-[#f38e82] rounded-full bg-[#f9f5f3] px-3 py-2 uppercase text-xs font-bold">
+                class="recipe__btn prev hidden mx-1 flex md:float-right cursor-pointer items-center text-[#f38e82] rounded-full bg-[#f9f5f3] px-3 py-2 uppercase text-xs font-bold">
                 <svg class="search__icon fill-[#f38e82] h-4 w-4 ml-1">
                   <use href="/src/assets/icons.svg#icon-arrow-left"></use>
                 </svg>
-                <span id="recipe__btn-prev">Prev</span>
+                <span id="recipe__btn-prev" data-page="" data-query="">Prev</span>
               </button>
             </div>
 
