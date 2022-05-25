@@ -91,7 +91,9 @@ async function getSearchValue(event) {
         document.getElementById("res").classList.remove("hidden");
         if ('content' in document.createElement('template')) {
             const results = document.querySelector("#results");
+            results.innerHTML = ''
             res.data.forEach(recipe => {
+
                 results.appendChild(renderSidebar(recipe.title, recipe.image_url, recipe.publisher, recipe.id));
                 document.querySelector(`#results li[data-id='${recipe.id}']`).addEventListener("click", getContent);
             })
